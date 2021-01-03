@@ -1,0 +1,20 @@
+{
+  "name": "eleventy-really-from-scratch",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "@11ty/eleventy": "^0.11.1",
+    "@11ty/eleventy-navigation": "^0.1.6",
+    "clean-css": "^4.2.3"
+  },
+  "devDependencies": {
+    "eslint": "^7.14.0"
+  },
+  "scripts": {
+    "start": "npx eleventy --serve"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

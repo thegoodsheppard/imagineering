@@ -1,0 +1,11 @@
+<nav>
+  {% set navPages = collections.all | eleventyNavigation %}
+
+  {{ navPages | eleventyNavigationToHtml({ 
+    showExcerpt: true, 
+    listElement: "ol", 
+    activeKey: eleventyNavigation.key,
+    listClass: "box",
+    listItemClass: "stack"
+  }) | safe }}
+</nav>

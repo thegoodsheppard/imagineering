@@ -1,0 +1,11 @@
+<ul>
+  <li>
+    Modified
+    {{ page.date.toISOString() | replace(r/T.*/, '') }}
+  </li>
+  <li>
+    Copyright
+    {{ vars.currentYear() }}
+    Greg Sheppard
+  </li>
+</ul>
