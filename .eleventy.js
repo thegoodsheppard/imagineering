@@ -1,13 +1,19 @@
 'use strict';
 
 const eleventyNavigationPlugin = require('@11ty/eleventy-navigation');
-const CleanCSS = require('clean-css');
+const syntaxHighlight = require('@11ty/eleventy-plugin-syntaxhighlight');
 
 module.exports = (eleventyConfig) => {
-  eleventyConfig.addPlugin(eleventyNavigationPlugin);
-  eleventyConfig.addFilter('cssmin', (code) => {
-    return new CleanCSS({}).minify(code).styles;
+  // collections
+  eleventyConfig.addCollection('posts', (collectionApi) => {
+    return collectionApi.getFilteredByGlob('src/posts/*.md').reverse();
   });
+
+  // plugins
+  eleventyConfig.addPlugin(eleventyNavigationPlugin);
+  eleventyConfig.addPlugin(syntaxHighlight);
+
+  // filters
   eleventyConfig.addFilter('gregFilter', (collectionItem) => {
     const postData = collectionItem.map(
       ({
@@ -43,9 +49,12 @@ module.exports = (eleventyConfig) => {
       2
     );
   });
+
+  // passthroughs
   eleventyConfig.addPassthroughCopy('src/css');
   eleventyConfig.addPassthroughCopy('src/images');
   eleventyConfig.addPassthroughCopy('src/every-layout');
+
   return {
     dir: {
       input: 'src',

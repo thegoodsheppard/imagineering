@@ -9,7 +9,7 @@
     "@11ty/eleventy-plugin-syntaxhighlight": "^3.0.6"
   },
   "devDependencies": {
-    "eslint": "^7.14.0"
+    "eslint": "^7.18.0"
   },
   "scripts": {
     "start": "npx eleventy --serve"
