@@ -1,15 +1,15 @@
 :root {
   /* https://every-layout.dev/rudiments/axioms/#a-universal-value */
-  --measure: 66ch;
+  --measure: 80ch;
   /* https://every-layout.dev/rudiments/modular-scale/#enforcing-consistency */
-  --ratio: 1.61803398875;
+  --ratio: 1.25;
   /* https://every-layout.dev/rudiments/modular-scale/#custom-properties */
   --s-5: calc(var(--s-4) / var(--ratio));
   --s-4: calc(var(--s-3) / var(--ratio));
   --s-3: calc(var(--s-2) / var(--ratio));
   --s-2: calc(var(--s-1) / var(--ratio));
   --s-1: calc(var(--s0) / var(--ratio));
-  --s0: calc(1rem + 0.5vw);
+  --s0: calc(1rem + 0.25vw);
   --s1: calc(var(--s0) * var(--ratio));
   --s2: calc(var(--s1) * var(--ratio));
   --s3: calc(var(--s2) * var(--ratio));
@@ -19,6 +19,8 @@
   font-size: var(--s0);
   /* https://every-layout.dev/layouts/box/#the-generator */
   --border-thin: thin;
+  /* seen in stack as well as cluster so moved here */
+  --space: 1.5rem;
 }
 * {
   /* https://every-layout.dev/rudiments/axioms/#a-universal-value */
@@ -33,4 +35,62 @@ main,
 nav {
   /* https://every-layout.dev/rudiments/boxes/#the-box-sizing-property */
   max-width: none;
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.stack > * {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.stack > * + * {
+  margin-top: var(--space);
+}
+
+.box {
+  padding: var(--s1);
+  border: 0 solid;
+  outline: var(--border-thin) solid transparent;
+  outline-offset: calc(var(--border-thin) * -1);
+  --color-light: #fff;
+  --color-dark: #000;
+  color: var(--color-dark);
+  background-color: var(--color-light);
+}
+
+.box * {
+  color: inherit;
+}
+
+.box.invert {
+  color: var(--color-light);
+  background-color: var(--color-dark);
+}
+
+.center {
+  box-sizing: content-box;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: var(--measure);
+}
+
+.cluster {
+  overflow: hidden;
+}
+
+.cluster > * {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  margin: calc(var(--space) / 2 * -1);
+}
+
+.cluster > * > * {
+  margin: calc(var(--space) / 2);
 }

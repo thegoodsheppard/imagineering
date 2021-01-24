@@ -1,0 +1,16 @@
+{% extends "layouts/base.njk" %}
+
+{# https://www.smashingmagazine.com/2020/01/html5-article-section/
+Thanks @brucel #}
+
+{% block main %}
+  <ul class="stack">
+    {% for item in collections.posts %}
+      <li>
+        <article>
+          <a href="{{ item.url }}">{{ item.data.title }}</a>
+        </article>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

@@ -5,20 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
     <title>{{ title }}</title>
-    {# <link rel="stylesheet" href="/css/andy-bell-reset_2020-11-06.css"> #}
-    {# <link rel="stylesheet" href="/css/every-layout-base.css"> #}
-    <link rel="stylesheet" href="/css/gs-styles.css">
-    {% block headElements %}{% endblock %}
+    <link rel="stylesheet" href="/css/andy-bell-reset_2020-11-06.css">
+    <link rel="stylesheet" href="/css/every-layout.css">
+    <link rel="stylesheet" href="/css/mine.css">
+    <link rel="stylesheet" href="/css/prism-tomorrow-night.css">
   </head>
-  <body>
+  <body class="stack center">
     <header>
-      {% include "components/header.njk" %}
+      <nav class="cluster">
+        <ul>
+          {% for item in nav.items %}
+            <li>
+              <a href="{{ item.url }}">{{ item.text }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      </nav>
     </header>
     <main>
-      {% block content %}{% endblock %}
+      {% block main %}{% endblock %}
     </main>
-    <footer class="cluster">
-      {% include "components/footer.njk" %}
+    <footer>
+      Copyright
+      {{ vars.currentYear() }}
+      Gregory Sheppard
     </footer>
     {% if dataDump %}
       <h1>Data Dump!</h1>
@@ -28,52 +38,3 @@
     {% endif %}
   </body>
 </html>
-
-{# <html lang="en">
-  <head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-    <style>
-      body,
-      html {
-        margin: 0;
-        padding: 0;
-      }
-      html {
-        height: 100%;
-      }
-      body {
-        font-family: 'Oswald', sans-serif;
-        color: #ebebeb;
-        display: flex;
-        flex-direction: column;
-        min-height: 100%;
-      }
-      header {
-        color: #333;
-        padding: 0.5rem;
-      }
-      main {
-        flex: 10 0 auto;
-        color: #333;
-        padding: 0.5rem;
-      }
-      footer {
-        background-color: violet;
-        padding: 0.5rem;
-      }
-    </style>
-  </head>
-  <body>
-    <header>
-      Here's the header
-    </header>
-    <main>
-      Here is a bunch of text up at the top. But there isn't enough content to push the footer to the bottom of the page.
-    </main>
-    <footer>
-      However, thanks to flexbox, I've been put in my place.
-    </footer>
-  </body>
-</html> #}
